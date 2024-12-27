@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { z } = require("zod");
 const cors= require('cors')
-mongoose.connect("mongodb+srv://kavanp7:FiAsPfUrGqFcFk8p@cluster0.xdxul.mongodb.net/Temp");
+mongoose.connect("");
 
 const JWT_SECRET = "asisdvn";
 
