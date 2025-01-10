@@ -1,9 +1,23 @@
 {
+"scripts": {
+  "start": "concurrently \"npm run start:frontend\" \"npm run start:backend/script.js\"",
+  "start:frontend": "vite",
+  "start:backend": "nodemon backend/server.js",
+  "dev": "vite",
+  "build": "vite build",
+  "lint": "eslint .",
+  "preview": "vite preview"
+},
+
   "dependencies": {
     "bcrypt": "^5.1.1",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.2",
+    "nodemon": "^3.1.9",
     "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
   }
 }

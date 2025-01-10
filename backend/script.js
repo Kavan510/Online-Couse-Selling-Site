@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { z } = require("zod");
-const cors= require('cors')
+const cors= require('cors');
 mongoose.connect("");
 
 const JWT_SECRET = "asisdvn";
@@ -49,7 +49,7 @@ app.post("/signup", async function (req, res) {
   }
 });
 
-app.post("/login", async function (req, res) {
+app.post("/signin", async function (req, res) {
   const { email, password } = req.body;
 
   const response = await Usermodel.findOne({
