@@ -104,8 +104,8 @@ adminRouter.post('/course', adminMiddleware, async (req, res) => {
             creatorId: adminId, // Use adminId here
         });
 
-        console.log("admin id: " + adminId);
-        console.log("creatorId is: " + adminId); // Fixed: Use adminId instead of undefined creatorId
+        // console.log("admin id: " + adminId);
+        // console.log("creatorId is: " + adminId); // Fixed: Use adminId instead of undefined creatorId
 
         res.json({
             msg: "Course has been added by Admin",
