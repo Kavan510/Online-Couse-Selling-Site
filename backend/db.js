@@ -1,7 +1,4 @@
 const mongoose = require('mongoose');
-const { object, number } = require('zod');
-const admin = require('./routes/admin');
-const course = require('./routes/course');
 const ObjectId=mongoose.ObjectId;
 
 const Schema = mongoose.Schema;
@@ -11,7 +8,7 @@ const userSchema = new Schema({
     email:String,
     password :String,
     firstName:String,
-    LastName:String,
+    lastName:String,
 
 });
 
@@ -21,7 +18,7 @@ const adminScheme = new Schema({
     email:String,
     password :String,
     firstName:String,
-    LastName:String,
+    lastName:String,
 });
 
 const courseSchema = new Schema({
@@ -29,7 +26,7 @@ const courseSchema = new Schema({
    description:String,
    price:Number,
    imageUrl:String,
-   creatorId: [{ObjectId, ref:'admin' }]
+   creatorId: [{ObjectId}]
 });
 
 
