@@ -90,33 +90,34 @@ console.log(verify)
 })
 
 
-adminRouter.post('/course',adminMiddleware,async (req,res)=>{
-    const adminId= req.userId;
-    try{
+adminRouter.post('/course', adminMiddleware, async (req, res) => {
+    const adminId = req.userId; // This comes from the middleware
+    try {
+        const { title, description, imageUrl, price } = req.body;
 
-        const {title,description,imageUrl,price} = req.body;
-        
-        await courseModel.create({
+        // Create a new course with the adminId as creatorId
+        const course = await courseModel.create({
             title,
             description,
             imageUrl,
             price,
-            creatorId:adminId
-        })
-        
-        res.json({
-            msg:"Course has been added by Admin ",
-            courseid:course._id
-        })
-    }
-    catch(e){
-        console.log("Error is occuring:\n"+e)
-        res.status(403).json({
-            msg:"Error in admin course add"
-        })
-    }
-})
+            creatorId: adminId, // Use adminId here
+        });
 
+        console.log("admin id: " + adminId);
+        console.log("creatorId is: " + adminId); // Fixed: Use adminId instead of undefined creatorId
+
+        res.json({
+            msg: "Course has been added by Admin",
+            courseid: course._id, // Ensure course is defined to access _id
+        });
+    } catch (e) {
+        console.log("Error is occurring:\n" + e);
+        res.status(403).json({
+            msg: "Error in admin course add",
+        });
+    }
+});
 
 adminRouter.put('/course',adminMiddleware , async (req,res)=>{
     const adminId = req .userId;
@@ -138,8 +139,18 @@ courseId:course._id,
 })
 
 
-adminRouter.get('/bulk',(req,res)=>{
+adminRouter.get('/bulk',adminMiddleware, async (req,res)=>{
     
+const adminId = req.userId;
+
+const courses = await courseModel.find({
+    creatorId : adminId
+})
+res.json({
+    msg:"courses are shown here",
+    courses
+})
+
 })
 
 
