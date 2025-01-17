@@ -1,11 +1,15 @@
 import React from "react";
-
+import { MainHeader } from "./mainPageHeader";
 
 export function MainWebsite(){
 
 return (
     <div>
-        Main 
+
+    <MainHeader/>
+    <div>
+        This is user's Main page 
+    </div>
     </div>
 )
 

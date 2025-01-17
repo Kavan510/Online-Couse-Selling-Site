@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Header } from "./header";
 
-export function Signup() {
+export function AdminSignup() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -12,7 +12,7 @@ export function Signup() {
 
   async function handleSignup() {
     try {
-      const res = await axios.post("http://localhost:3000/api/v1/user/signup", {
+      const res = await axios.post("http://localhost:3000/api/v1/admin/signup", {
         firstName,
         lastName,
         email,
@@ -21,7 +21,7 @@ export function Signup() {
 
       if (res.status === 200) {
         console.log("Signed up successfully!!");
-        navigate("/login");
+        navigate("/admin/signin");
       } else {
         console.log("Error");
         alert("Try Again");
@@ -91,13 +91,6 @@ export function Signup() {
               >
                 Signup
               </button>
-            </div>
-            <div>
-              <b>
-                For Admin 
-              </b>
-              <Link className="text-green-500 none pl-1 " to='/admin/signup'>Signup</Link>
-            
             </div>
           </div>
         </div>

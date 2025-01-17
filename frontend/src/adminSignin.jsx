@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Header } from './header';
 
-export function Login() {
+export function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   
@@ -11,14 +11,14 @@ export function Login() {
 
   async function handleLogin() {
     try {
-      const res = await axios.post("http://localhost:3000/api/v1/user/signin", {
+      const res = await axios.post("http://localhost:3000/api/v1/admin/signin", {
         email,
         password,
       });
 
       if (res.status === 200) {
         console.log("Logged in!!");
-        navigate("/");
+        navigate("/admin");
       } else {
         console.log("Error");
         alert("Try Again");
@@ -70,9 +70,9 @@ export function Login() {
               </button>
               <div className="flex mt-4 items-center">
                 <div className="font-bold pr-2">
-                  For first time users
+                  For first time Admins
                 </div>
-                <Link className="text-green-500 none " to='/signup'>Signup</Link>
+                <Link className="text-green-500 none " to='/admin/signup'>Signup</Link>
               </div>
             </div>
           </div>
