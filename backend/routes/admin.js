@@ -7,7 +7,6 @@ const jwt = require("jsonwebtoken")
 const {testHash} =require("./bcrypt")
 const adminMiddleware = require("../middlewares/admin")
 const {JWT_ADMIN_SECRET} = require("../config");
-const course = require('./course');
 
 adminRouter.post('/signup', async (req, res) => {
     const requirebody = z.object({
@@ -78,7 +77,6 @@ console.log(verify)
                 { id: verify._id.toString() },
                 JWT_ADMIN_SECRET
             );
-
             res.status(200).json({ token });
         } else {
             res.status(401).json({ msg: "Invalid credentials" });
@@ -95,7 +93,6 @@ adminRouter.post('/course', adminMiddleware, async (req, res) => {
     try {
         const { title, description, imageUrl, price } = req.body;
 
-        // Create a new course with the adminId as creatorId
         const course = await courseModel.create({
             title,
             description,

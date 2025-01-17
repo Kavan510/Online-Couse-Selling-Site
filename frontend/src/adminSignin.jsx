@@ -17,6 +17,9 @@ export function AdminLogin() {
       });
 
       if (res.status === 200) {
+        const token = await res.data.token
+        localStorage.setItem("token",token);
+
         console.log("Logged in!!");
         navigate("/admin");
       } else {
