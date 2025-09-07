@@ -2,11 +2,14 @@ const Router = require('express');
 const {adminModel,courseModel} = require("../db")
 const {z} =require("zod")
 const bcrypt =require("bcrypt")
-const adminRouter = Router();
 const jwt = require("jsonwebtoken")
 const {testHash} =require("./bcrypt")
 const adminMiddleware = require("../middlewares/admin")
 const {JWT_ADMIN_SECRET} = require("../config");
+
+
+const adminRouter = Router();
+
 
 adminRouter.post('/signup', async (req, res) => {
     const requirebody = z.object({
@@ -63,7 +66,7 @@ adminRouter.post('/signin',async (req,res)=>{
     try {
         const { email, password } = req.body;
 
-        const verify = await adminModel.findOne({ email }); //findOne returns true or undefined and find function return true or empty array(List)
+        const verify = await adminModel.findOne({ email }); 
 
         if (!verify) {
             res.status(404).json({ msg: "User not found" });
@@ -89,7 +92,7 @@ console.log(verify)
 
 
 adminRouter.post('/course', adminMiddleware, async (req, res) => {
-    const adminId = req.userId; // This comes from the middleware
+    const adminId = req.userId; 
     try {
         const { title, description, imageUrl, price } = req.body;
 
@@ -98,7 +101,7 @@ adminRouter.post('/course', adminMiddleware, async (req, res) => {
             description,
             imageUrl,
             price,
-            creatorId: adminId, // Use adminId here
+            creatorId: adminId, 
         });
 
         // console.log("admin id: " + adminId);
@@ -106,7 +109,7 @@ adminRouter.post('/course', adminMiddleware, async (req, res) => {
 
         res.json({
             msg: "Course has been added by Admin",
-            courseid: course._id, // Ensure course is defined to access _id
+            courseid: course._id, 
         });
     } catch (e) {
         console.log("Error is occurring:\n" + e);

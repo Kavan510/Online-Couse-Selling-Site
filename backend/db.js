@@ -26,7 +26,7 @@ const courseSchema = new Schema({
     creatorId: { type: ObjectId, ref: 'admin' }, // Added reference to "admin"
 });
 
-// Add references here
+
 const purchaseSchema = new Schema({
     userId: { type: ObjectId, ref: 'user' }, // Added reference to "user"
     courseId: { type: ObjectId, ref: 'course' }, // Added reference to "course"
